@@ -1,0 +1,3 @@
+[submodule "themes/hyde-xx"]
+	path = themes/hyde-xx
+	url = git@github.com:dmial/hyde-xx.git
