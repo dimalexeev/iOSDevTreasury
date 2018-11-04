@@ -7,7 +7,8 @@ paginatePath = "page"
 
 copyright = "(c) 2018 Dmitriy Alexeev"
 
-# disqusShortname = "your_disqus_shortname"
+disqusShortname = "ioswitbit"
+
 [author]
     name = "Dmitriy Alexeev"
     email = "dima@alexeev.biz"
