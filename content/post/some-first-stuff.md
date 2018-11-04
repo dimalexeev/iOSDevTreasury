@@ -2,8 +2,8 @@
 title: "First"
 date: 2018-10-25T00:14:31+03:00
 draft: false
-topics: [c_one, c_two]
-tags: [swift, xcode, rx, foundation]
+topics: [topic1, topic2]
+tags: [tag1, tag2, tag3, tag4]
 ---
 
 It’s been 20 years since Epic Games first released its Unreal game development engine in concert with its first person shooter, Unreal. Since then, the company has been releasing free-to-play games as a loss leader to show off what its powerful development toolkit can do.
