@@ -1,74 +1,72 @@
 baseURL = "https://ios.witbit.io"
-# relativeURLs = true
-languageCode = "en-us"
-title = "iOS Wit Bit"
-theme = "hyde-xx"
+languageCode = "en-EN"
+theme = "hyde-iwb"
 
 paginate = 10
+paginatePath = "page"
 
+copyright = "(c) 2018 Dmitriy Alexeev"
+
+# disqusShortname = "your_disqus_shortname"
 [author]
-    name = "iOS Wit Bit"
+    name = "Dmitriy Alexeev"
+    email = "dima@alexeev.biz"
 
 [permalinks]
     # Optional. Change the permalink format for the 'post' content type.
     # The format shown here is the same one Jekyll/Octopress uses by default.
     post = "/blog/:year/:month/:day/:title/"
-
+    
 [taxonomies]
     # Optional. Use if you want tags and lists.
-    category = "categories"
-
+    tag = "tags"
+    topic = "topics"
 #
 # All parameters below here are optional and can be mixed and matched.
 #
 [params]
-    # If false display full article contents in blog index.
-    # Otherwise show description and 'read on' link to individual blog post page.
-    # Default (if omitted) is true.
-    truncate = true
-
-    # Used when a given page doesn't set its own.
-    # defaultDescription = "Your default page description"
-    # defaultKeywords = "your,default,page,keywords"
-
-    # Hide estimated reading time for posts.
-    # Default (if omitted) is false.
-    hideReadingTime = true
-
-    # Changes sidebar background and link/accent colours.
-    # See below for more colour options.
-    # This also works: "theme-base-08 layout-reverse", or just "layout-reverse".
-    theme = "theme-base-00"
-
-    # Select a syntax highight.
-    # Check the static/css/highlight directory for options.
-    highlight = "atelier-forest.light"
-
-    # Optional additional custom CSS file URL, will override other styles.
-    # customCSS = ""
-
-    # Displays under the author name in the sidebar, keep it short.
     # You can use markdown here.
-    # tagline = "Your favourite quote or soundbite."
+    brand = "WIT BIT"
+    topline = "bits of Swift, Cocoa and software development in general"
+    footline = "Do stuff with ❤️"
+
+    # Sidebar position
+    # false, true, "left", "right"
+    sidebar = "right"
 
     # Text for the top menu link, which goes the root URL for the site.
-    # Default (if omitted) is "Blog".
-    home = "Home"
+    # Default (if omitted) is "Home".
+    home = "home"
 
-    # Metadata used to drive integrations.
+    # Select a syntax highight for highlight.js
+    # Check the static/css/highlight directory for options.
+    # Leave unset to fall back to default hugo highlighter instead of highlight.js
+    highlight = "github"
+
+    # Google Analytics.
     # googleAnalytics = "Your Google Analytics tracking code"
-    # gravatarHash = "MD5 hash of your Gravatar email address"
 
-    # Sidebar social links, these must be full URLs.
-    github = "https://github.com/dmial"
-    # bitbucket = ""
-    # stackOverflow = ""
-    # linkedin = ""
-    # googleplus = ""
-    # facebook = ""
-    # twitter = ""
-    # youtube = ""
-
-    # Other social-like sidebar links
-    rss = true  # switch to true to enable RSS icon link
+    # Sidebar social links.
+    github = "dmial" # Your Github profile ID
+    # bitbucket = "" # Your Bitbucket profile ID
+    # linkedin = "" # Your LinkedIn profile ID (from public URL)
+    # googleplus = "" # Your Google+ profile ID
+    facebook = "dima.alexeev" # Your Facebook profile ID
+    # twitter = "" # Your Twitter profile ID
+    # youtube = ""  # Your Youtube channel ID
     # flattr = ""  # populate with your flattr uid
+    # flickr = "" # Your Flickr profile ID
+    # vimeo = "" # Your Vimeo profile ID
+
+    # Sidebar RSS link: will only show up if there is a RSS feed
+    # associated with the current page
+    rss = true
+
+[blackfriday]
+    angledQuotes = true
+    fractions = false
+    hrefTargetBlank = false
+    latexDashes = true
+    plainIdAnchors = true
+    extensions = []
+    extensionmask = []
