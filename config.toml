@@ -23,8 +23,8 @@ disqusShortname = "ioswitbit"
 [params]
     
     # You can use markdown here.
-    brand = " WIT BIT"
-    topline = "**bits** of knowledge: Swift, Cocoa, Xcode, software development in general"
+    brand = "WIT BIT"
+    topline = "bits of knowledge: iOS software development and more"
     footline = "Do stuff with ❤️"
     
     sidebar = "right" # false, true, "left", "right"
