@@ -53,6 +53,8 @@ disqusShortname = "ioswitbit"
     # flickr = "" # Your Flickr profile ID
     # vimeo = "" # Your Vimeo profile ID
     
+    readingMeasures = false # "Read in about X min · (Y Words)" 
+
 [blackfriday]
     angledQuotes = true
     fractions = false
