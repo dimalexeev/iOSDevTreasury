@@ -1,5 +1,6 @@
 baseURL = "https://ios.witbit.io"
 languageCode = "en-EN"
+
 theme = "hyde-iwb"
 
 paginate = 10
@@ -14,33 +15,25 @@ disqusShortname = "ioswitbit"
     email = "dima@alexeev.biz"
 
 [permalinks]
-    # Optional. Change the permalink format for the 'post' content type.
-    # The format shown here is the same one Jekyll/Octopress uses by default.
     post = "/blog/:year/:month/:day/:title/"
     
 [taxonomies]
-    # Optional. Use if you want tags and lists.
     tag = "tags"
-    topic = "topics"
-#
-# All parameters below here are optional and can be mixed and matched.
-#
-[params]
-    # You can use markdown here.
-    brand = "WIT BIT"
-    topline = "bits of Swift, Cocoa and software development in general"
-    footline = "Do stuff with ❤️"
 
-    # Sidebar position
-    # false, true, "left", "right"
-    sidebar = "right"
+[params]
+    
+    # You can use markdown here.
+    brand = " WIT BIT"
+    topline = "**bits** of knowledge: Swift, Cocoa, Xcode, software development in general"
+    footline = "Do stuff with ❤️"
+    
+    sidebar = "right" # false, true, "left", "right"
 
     # Text for the top menu link, which goes the root URL for the site.
     # Default (if omitted) is "Home".
     home = "home"
 
     # Select a syntax highight for highlight.js
-    # Check the static/css/highlight directory for options.
     # Leave unset to fall back to default hugo highlighter instead of highlight.js
     highlight = "github"
 
@@ -49,20 +42,17 @@ disqusShortname = "ioswitbit"
 
     # Sidebar social links.
     github = "dmial" # Your Github profile ID
+    facebook = "dima.alexeev" # Your Facebook profile ID
+    rss = true
     # bitbucket = "" # Your Bitbucket profile ID
     # linkedin = "" # Your LinkedIn profile ID (from public URL)
     # googleplus = "" # Your Google+ profile ID
-    facebook = "dima.alexeev" # Your Facebook profile ID
     # twitter = "" # Your Twitter profile ID
     # youtube = ""  # Your Youtube channel ID
     # flattr = ""  # populate with your flattr uid
     # flickr = "" # Your Flickr profile ID
     # vimeo = "" # Your Vimeo profile ID
-
-    # Sidebar RSS link: will only show up if there is a RSS feed
-    # associated with the current page
-    rss = true
-
+    
 [blackfriday]
     angledQuotes = true
     fractions = false

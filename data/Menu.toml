@@ -1,0 +1,6 @@
+[about]
+    Name = "about"
+    URL = "/about"
+[tags]
+    Name = "tags"
+    URL = "/tags"
