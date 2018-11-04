@@ -2,7 +2,8 @@
 title: "Third"
 date: 2018-10-27T00:14:31+03:00
 draft: false
-categories: ["Development", "VIM"]
+topics: ["to_swift", "to_xcode"]
+tags: ["tag_swift", "tag_xcode"]
 description: spf13-vim is a cross platform distribution of vim plugins and resources for Vim.
 ---
 
