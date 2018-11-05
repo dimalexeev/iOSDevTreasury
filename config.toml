@@ -43,6 +43,7 @@ disqusShortname = "witbitsite"
     # Sidebar social links.
     github = "dmial" # Your Github profile ID
     facebook = "dima.alexeev" # Your Facebook profile ID
+    telegram = "witbitio"
     rss = true
     # bitbucket = "" # Your Bitbucket profile ID
     # linkedin = "" # Your LinkedIn profile ID (from public URL)
