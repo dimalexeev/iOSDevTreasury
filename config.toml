@@ -1,7 +1,7 @@
 baseURL = "https://witbit.io"
 languageCode = "en-EN"
 
-theme = "hyde-iwb"
+theme = "hyde-wb"
 
 paginate = 10
 paginatePath = "page"
