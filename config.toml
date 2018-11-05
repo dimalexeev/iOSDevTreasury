@@ -1,4 +1,4 @@
-baseURL = "https://ios.witbit.io"
+baseURL = "https://witbit.io"
 languageCode = "en-EN"
 
 theme = "hyde-iwb"

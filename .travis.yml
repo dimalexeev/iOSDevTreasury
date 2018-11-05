@@ -8,7 +8,6 @@ install:
 
 script:
   - hugo
-  - echo 'ios.witbit.io' > public/CNAME
 
 deploy:
   provider: pages
