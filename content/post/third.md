@@ -2,8 +2,8 @@
 title: "Third"
 date: 2018-10-27T00:14:31+03:00
 draft: false
-topics: [topic2]
-tags: [tag3, tag4]
+# topics: [topic2]
+# tags: [tag3, tag4]
 description: spf13-vim is a cross platform distribution of vim plugins
 ---
 

@@ -17,8 +17,8 @@ disqusShortname = "witbitsite"
 [permalinks]
     post = "/blog/:year/:month/:day/:title/"
     
-[taxonomies]
-    tag = "tags"
+# [taxonomies]
+#     tag = "tags"
 
 [params]
     
