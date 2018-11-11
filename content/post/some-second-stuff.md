@@ -1,5 +1,5 @@
 ---
-title: "Processing of unrecoverable errors in Swift"
+title: "Lorem ipsum. We are trying to find out events of the second type."
 description: "There are places of your code which shouldn't be reachable during normal execution process. If that place is reached you should stop program execution and signal about programmer's (probably yours) error. How? Call for fatalError(), assertionFailure() or what?"
 date: 2018-10-26T00:14:31+03:00
 draft: false

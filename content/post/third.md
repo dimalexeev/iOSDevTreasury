@@ -1,10 +1,10 @@
 ---
-title: "Third"
+title: "Lorem ipsum. Third"
 date: 2018-10-27T00:14:31+03:00
 draft: false
 # topics: [topic2]
 # tags: [tag3, tag4]
-description: spf13-vim is a cross platform distribution of vim plugins
+description: Spf13-vim is a cross platform distribution of vim plugins.
 ---
 
 Perhaps even more exciting is news of a MacBook Air successor with a high-res screen. It’s still not clear exactly what we’re in for — whether it’ll be updated parts in the Air’s body, a brand new take on the Air, or just an alternate version of the MacBook. But it’s clear that some kind of much-needed update is coming. Bloomberg says it’ll have a 13-inch screen, which means that at the very least, it’ll be different than today’s MacBook.
