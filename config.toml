@@ -27,7 +27,7 @@ disqusShortname = "witbitsite"
     topline = "bits of knowledge: iOS software development and more"
     footline = "Do stuff with ❤️"
     
-    sidebar = "right" # false, true, "left", "right"
+    # sidebar = "right" # false, true, "left", "right"
 
     # Text for the top menu link, which goes the root URL for the site.
     # Default (if omitted) is "Home".
