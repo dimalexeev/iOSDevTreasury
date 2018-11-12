@@ -1,3 +1,6 @@
 [submodule "themes/hyde-wb"]
 	path = themes/hyde-wb
 	url = https://github.com/dmial/hyde-wb.git
+[submodule "content"]
+	path = content
+	url = https://github.com/dmial/wit-bit-site-content.git
