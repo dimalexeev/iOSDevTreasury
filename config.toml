@@ -3,6 +3,8 @@ languageCode = "en-EN"
 
 theme = "hyde-wb"
 
+staticDir = "content/images"
+
 paginate = 10
 paginatePath = "page"
 
