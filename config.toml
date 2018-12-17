@@ -26,7 +26,7 @@ disqusShortname = "witbitsite"
     
     # You can use markdown here.
     brand = "WIT BIT"
-    topline = "bits of knowledge: iOS software development and more"
+    topline = "bits of knowledge: software development, technology, management, engineering and more"
     footline = "Do stuff with ❤️"
     
     # sidebar = "right" # false, true, "left", "right"
