@@ -1,0 +1,523 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]> <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]> <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]> <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+<head>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <title>The Processing of Unrecoverable Errors in Swift  &middot; </title>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="HandheldFriendly" content="True">
+<meta name="MobileOptimized" content="320">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+<meta name="description" content="Learn the Swift Standard Library analyzing its source code. We&#39;ll find out all the details about fatalError(_:file:line), assertionFailure(_:file:line:) and other similar terminating functions. And we&#39;ll understand which functions we should call under what circumstances." />
+
+<meta name="keywords" content="">
+
+
+<meta property="og:title" content="The Processing of Unrecoverable Errors in Swift  &middot;  ">
+<meta property="og:site_name" content=""/>
+<meta property="og:url" content="https://witbit.io/blog/2018/12/19/the-processing-of-unrecoverable-errors-in-swift/" />
+<meta property="og:locale" content="en-EN">
+
+
+<meta property="og:type" content="article" />
+<meta property="og:description" content="Learn the Swift Standard Library analyzing its source code. We&#39;ll find out all the details about fatalError(_:file:line), assertionFailure(_:file:line:) and other similar terminating functions. And we&#39;ll understand which functions we should call under what circumstances."/>
+<meta property="og:article:published_time" content="2018-12-19T23:49:50&#43;03:00" />
+<meta property="og:article:modified_time" content="2018-12-19T23:49:50&#43;03:00" />
+
+  
+
+  
+<meta name="twitter:card" content="summary" />
+<meta name="twitter:site" content="@" />
+<meta name="twitter:creator" content="@" />
+<meta name="twitter:title" content="The Processing of Unrecoverable Errors in Swift" />
+<meta name="twitter:description" content="Learn the Swift Standard Library analyzing its source code. We&#39;ll find out all the details about fatalError(_:file:line), assertionFailure(_:file:line:) and other similar terminating functions. And we&#39;ll understand which functions we should call under what circumstances." />
+<meta name="twitter:url" content="https://witbit.io/blog/2018/12/19/the-processing-of-unrecoverable-errors-in-swift/" />
+<meta name="twitter:domain" content="https://witbit.io">
+  
+
+<script type="application/ld+json">
+  {
+    "@context": "http://schema.org",
+    "@type": "Article",
+    "headline": "The Processing of Unrecoverable Errors in Swift",
+    "author": {
+      "@type": "Person",
+      "name": "http://profiles.google.com/+?rel=author"
+    },
+    "datePublished": "2018-12-19",
+    "description": "Learn the Swift Standard Library analyzing its source code. We&#39;ll find out all the details about fatalError(_:file:line), assertionFailure(_:file:line:) and other similar terminating functions. And we&#39;ll understand which functions we should call under what circumstances.",
+    "wordCount": 1469
+  }
+</script>
+
+
+
+<link rel="canonical" href="https://witbit.io/blog/2018/12/19/the-processing-of-unrecoverable-errors-in-swift/" />
+
+<link rel="apple-touch-icon-precomposed" sizes="144x144" href="https://witbit.io/touch-icon-144-precomposed.png">
+<link href="https://witbit.io/favicon.png" rel="icon">
+
+<meta name="generator" content="Hugo 0.52" />
+
+  <!--[if lt IE 9]>
+<script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+<script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+<![endif]-->
+
+<link href='https://fonts.googleapis.com/css?family=Merriweather:300%7CRaleway%7COpen+Sans' rel='stylesheet' type='text/css'>
+
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+<link rel="stylesheet" href="/css/style.css">
+<link rel="stylesheet" href="/css/highlight/github.css">
+
+  
+  
+</head>
+<body>
+  <main id="main-wrapper" class="container main_wrapper">
+    <header id="main-header" class="container main_header">
+  <div class="container brand">
+  <div class="container title h1-like">
+  <a class="baselink" href="https://witbit.io">
+  WIT BIT
+
+</a>
+
+</div>
+
+  
+<div class="container topline">
+  
+  bits of knowledge: software development, technology, management, engineering and more
+
+
+</div>
+
+
+</div>
+
+  <div class="container nav secondary no-print">
+  
+<a id="contact-link-telegram" class="contact_link" href="https://t.me/wit_b">
+  <span class="fab fa-telegram-plane fa-2x"></span><span>telegram</span></a>
+
+
+
+
+
+<a id="contact-link-github" class="contact_link" href="https://github.com/dmial">
+  <span class="fab fa-github-square fa-2x"></span><span>github</span></a>
+
+
+
+<a id="contact-link-facebook" class="contact_link" href="https://www.facebook.com/dima.alexeev">
+  <span class="fab fa-facebook-square fa-2x"></span><span>facebook</span></a>
+
+
+
+
+
+<a id="contact-link-linkedin" class="contact_link" href="https://www.linkedin.com/in/dima-alexeev">
+  <span class="fab fa-linkedin fa-2x"></span><span>linkedin</span></a>
+
+
+
+<a id="contact-link-email" class="contact_link" href="mailto:dima@alexeev.biz">
+  <span class="fas fa-envelope-square fa-2x"></span><span>email</span></a>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</div>
+
+<nav class="container nav primary no-print">
+  
+
+<a class="homelink" href="https://witbit.io">home</a>
+
+
+  
+<a href="https://witbit.io/about">about</a>
+
+
+</nav>
+
+
+
+  
+
+</header>
+
+
+<article id="main-content" class="container main_content single">
+  <header class="container hat">
+  <h1>The Processing of Unrecoverable Errors in Swift
+</h1>
+
+  <div class="metas">
+<time datetime="2018-12-19">19 Dec, 2018</time>
+
+
+  
+  
+    <br>
+  
+
+
+</div>
+
+</header>
+
+  <div class="container content">
+  
+
+<h2 id="preface">Preface</h2>
+
+<p>This article is an example of how we can do research into Swift Standard Library functions behavior building our knowledge not only on the Library documentation but also on its source code.</p>
+
+<h2 id="unrecoverable-errors">Unrecoverable Errors</h2>
+
+<p>All events which programmers call &laquo;errors&raquo; can be separated into two types.</p>
+
+<ul>
+<li>Events caused by external factors such as a network connection failure.</li>
+<li>Events caused by a programmer&rsquo;s mistake such as reaching a switch operator case which should be unreachable.</li>
+</ul>
+
+<p>The events of the first type are processed in a regular control flow. For example, we react to network failure by showing a message to a user and setting an app to wait for network connection recovery.</p>
+
+<p>We try to find out and eliminate events of the second type as early as possible before the code goes to production. One of the approaches here is to run some <a href="https://developer.apple.com/documentation/swift/swift_standard_library/debugging_and_reflection">runtime checks terminating program execution</a> in a debuggable state and print a message with an indication of where in the code the error has happened.</p>
+
+<p>For example, a programmer may terminate execution if the required initializer was not provided but was called. That will be invariably noticed and fixed during the first test run.</p>
+
+<pre><code class="language-swift">required init?(coder aDecoder: NSCoder) {
+    fatalError(&quot;init(coder:) has not been implemented&quot;)
+}
+</code></pre>
+
+<p>Another example is the switching between indices (let&rsquo;s assume that for some reason you can&rsquo;t use enumeration).</p>
+
+<pre><code class="language-swift">switch index {
+case 0:
+    // something is done here
+case 1:
+    // other thing is done here
+case 2:
+    // and other thing is done here
+default:
+    assertionFailure(&quot;Impossible index&quot;)
+}
+</code></pre>
+
+<p>Again, a programmer is going to cause crash during debugging here in order to inevitably notice a bug in indexing.</p>
+
+<p>There are five terminating functions from the Swift Standard Library (as for Swift 4.2).</p>
+
+<pre><code class="language-swift">func precondition(_ condition: @autoclosure () -&gt; Bool, _ message: @autoclosure () -&gt; String = default, file: StaticString = #file, line: UInt = #line)
+</code></pre>
+
+<pre><code class="language-swift">func preconditionFailure(_ message: @autoclosure () -&gt; String = default, file: StaticString = #file, line: UInt = #line) -&gt; Never
+</code></pre>
+
+<pre><code class="language-swift">func assert(_ condition: @autoclosure () -&gt; Bool, _ message: @autoclosure () -&gt; String = default, file: StaticString = #file, line: UInt = #line)
+</code></pre>
+
+<pre><code class="language-swift">func assertionFailure(_ message: @autoclosure () -&gt; String = default, file: StaticString = #file, line: UInt = #line)
+</code></pre>
+
+<pre><code class="language-swift">func fatalError(_ message: @autoclosure () -&gt; String = default, file: StaticString = #file, line: UInt = #line) -&gt; Never
+</code></pre>
+
+<p><strong>Which of the five terminating functions should we prefer?</strong></p>
+
+<h2 id="source-code-vs-documentation">Source Code vs Documentation</h2>
+
+<p>Let&rsquo;s look at the <a href="https://github.com/apple/swift/blob/master/stdlib/public/core/Assert.swift">source code</a>. We can see the following right away:</p>
+
+<ol>
+<li>Each of these five functions either terminates the program execution or does nothing.</li>
+<li>Possible termination happens in two ways.
+
+<ul>
+<li>With printing a convenient debug message by calling <code>_assertionFailure(_:_:file:line:flags:)</code>.</li>
+<li>Without the debug message just by calling <code>Builtin.condfail(error._value)</code> or <code>Builtin.int_trap()</code>.</li>
+</ul></li>
+<li>The difference between the five terminating functions lies in the conditions under which all of the above happens.</li>
+<li><code>fatalError(_:file:line)</code> calls <code>_assertionFailure(_:_:file:line:flags:)</code> unconditionally.</li>
+<li>The other four terminating functions evaluate conditions by calling the following configuration evaluation functions. (They begin with an underscore which means that they are internal and are not supposed to be called directly by a programmer who uses Swift Standard Library).
+
+<ul>
+<li><code>_isReleaseAssertConfiguration()</code></li>
+<li><code>_isDebugAssertConfiguration()</code></li>
+<li><code>_isFastAssertConfiguration()</code></li>
+</ul></li>
+</ol>
+
+<p>Now let&rsquo;s look at <a href="https://developer.apple.com/documentation/swift/swift_standard_library/debugging_and_reflection">documentation</a>. We can see the following right away.</p>
+
+<ol>
+<li><code>fatalError(_:file:line)</code> <a href="https://developer.apple.com/documentation/swift/1538698-fatalerror">unconditionally prints a given message and stops execution</a>.</li>
+<li>The effects of the other four terminating functions vary depending on the build flag used: <code>-Onone</code>, <code>-O</code>, <code>-Ounchecked</code>. For example, look at <code>preconditionFailure(_:file:line:)</code> <a href="https://developer.apple.com/documentation/swift/1539374-preconditionfailure">documentation</a>.</li>
+<li>We can set these build flags in Xcode through <code>SWIFT_OPTIMIZATION_LEVEL</code> compiler build setting.</li>
+<li>We also know from Xcode 10 <a href="https://help.apple.com/xcode/mac/10.0/#/itcaec37c2a6">documentation</a> that one more optimization flag — <code>-Osize</code> — is introduced.</li>
+<li>Thus we have the four optimization build flags to consider.
+
+<ul>
+<li><code>-Onone</code> (don&rsquo;t optimize)</li>
+<li><code>-O</code> (optimize for speed)</li>
+<li><code>-Osize</code> (optimize for size)</li>
+<li><code>-Ounchecked</code> (switch off many compiler checks)</li>
+</ul></li>
+</ol>
+
+<p>We may conclude that the configuration evaluated in the four terminating functions is set by these build flags.</p>
+
+<h2 id="running-configuration-evaluation-functions">Running Configuration Evaluation Functions</h2>
+
+<p>Although configuration evaluation functions are designed for internal usage, some of them are <a href="https://github.com/apple/swift/commit/d0697f2ac1092f74548c4df348194a3ee9ea7cda">public for testing purposes</a>, and we may try them through CLI giving the following commands in Bash.</p>
+
+<pre><code class="language-bash">$ echo 'print(_isFastAssertConfiguration())' &gt;conf.swift
+$ swift conf.swift
+false
+$ swift -Onone conf.swift
+false
+$ swift -O conf.swift
+false
+$ swift -Osize conf.swift
+false
+$ swift -Ounchecked conf.swift
+true
+</code></pre>
+
+<pre><code class="language-bash">$ echo 'print(_isDebugAssertConfiguration())' &gt;conf.swift
+$ swift conf.swift
+true
+$ swift -Onone conf.swift
+true
+$ swift -O conf.swift
+false
+$ swift -Osize conf.swift
+false
+$ swift -Ounchecked conf.swift
+false
+</code></pre>
+
+<p>These tests and <a href="https://github.com/apple/swift/blob/master/stdlib/public/core/Assert.swift">source code</a> inspection lead us to the following rough conclusions.</p>
+
+<p>There are three mutually exclusive configurations.</p>
+
+<ul>
+<li><em>Release</em> configuration is set by providing either a <code>-O</code> or a <code>-Osize</code> build flag.</li>
+<li><em>Debug</em> configuration is set by providing either a <code>-Onone</code> build flag or no optimization flags at all.</li>
+<li><code>_isFastAssertConfiguration()</code> is evaluated to <code>true</code> if a <code>-Ounchecked</code> build flag is set. Although this function has a word &laquo;fast&raquo; in its name, it has nothing to do with optimizing for speed <code>-O</code> build flag.</li>
+</ul>
+
+<p><strong>NB:</strong> These conclusions are not the strict definition of when <em>debug</em> builds or <em>release</em> builds take place. It&rsquo;s a more complex issue. But these conclusions are correct for the context of terminating functions usage.</p>
+
+<h2 id="simplifying-the-picture">Simplifying The Picture</h2>
+
+<h3 id="ounchecked"><code>-Ounchecked</code></h3>
+
+<p>Let&rsquo;s look not at <strong>what the <code>-Ounchecked</code> flag is for</strong> (it&rsquo;s irrelevant here) but at <strong>what its role is</strong> in the context of terminating functions usage.</p>
+
+<ul>
+<li>Documentation for <code>precondition(_:_:file:line:)</code> and <code>assert(_:_:file:line:)</code> says, &laquo;In <code>-Ounchecked</code> builds, condition is not evaluated, but the optimizer may assume that it always evaluates to true. Failure to satisfy that assumption is a serious programming error.&raquo;</li>
+<li>Documentation for <code>preconditionFailure(_:file:line)</code> and <code>assertionFailure(_:file:line:)</code> says, &laquo;In <code>-Ounchecked</code> builds, the optimizer may assume that this function is never called. Failure to satisfy that assumption is a serious programming error.&raquo;</li>
+<li>We can see from the <a href="https://github.com/apple/swift/blob/master/stdlib/public/core/Assert.swift">source code</a> that evaluation of <code>_isFastAssertConfiguration()</code> to <code>true</code> <strong>should not happen</strong>. (If it does happen, strange <code>_conditionallyUnreachable()</code> is called. See <a href="https://github.com/apple/swift/blob/master/stdlib/public/core/Assert.swift">see lines 136 and 176</a>.)</li>
+</ul>
+
+<p>Speaking more directly, you <strong>must not allow reachability</strong> of the following four terminating functions with the <code>-Ounchecked</code> build flag set for your program.</p>
+
+<ul>
+<li><code>precondition(_:_:file:line:)</code></li>
+<li><code>preconditionFailure(_:file:line)</code></li>
+<li><code>assert(_:_:file:line:)</code></li>
+<li><code>assertionFailure(_:file:line:)</code></li>
+</ul>
+
+<p>Use only <code>fatalError(_:file:line)</code> while applying <code>-Ounchecked</code> and at the same time allowing that the point of your program with <code>fatalError(_:file:line)</code> instruction may be reachable.</p>
+
+<h3 id="the-role-of-a-condition-check">The Role of a Condition Check</h3>
+
+<p>Two of the terminating functions let us check for conditions. The <a href="https://github.com/apple/swift/blob/master/stdlib/public/core/Assert.swift">source code</a> inspection allow us to see that if condition is failed then function behavior is the same as the behavior of its respective cousin:</p>
+
+<ul>
+<li><code>precondition(_:_:file:line:)</code> becomes <code>preconditionFailure(_:file:line)</code>,</li>
+<li><code>assert(_:_:file:line:)</code> becomes <code>assertionFailure(_:file:line:)</code>.</li>
+</ul>
+
+<p>That knowledge makes further analysis easier.</p>
+
+<h3 id="release-vs-debug-configurations">Release vs Debug Configurations</h3>
+
+<p>Eventually, further documentation and source code inspection allows us to formulate the following table.</p>
+
+<p><img src="/fatal_functions.png" alt="terminating functions" /></p>
+
+<p>It is clear now that the most important choice for a programmer is what program behavior should be like <strong>in <em>release</em></strong> if a runtime check reveals an error.</p>
+
+<p>The key takeaway here is that <code>assert(_:_:file:line:)</code> and <code>assertionFailure(_:file:line:)</code> make the impact of program failure less severe. For example, an iOS app may have corrupted UI (since some important runtime checks were failed) but it won&rsquo;t crash.</p>
+
+<p>But that scenario may not be the one you wanted. You have a choice.</p>
+
+<h2 id="never-return-type"><code>Never</code> Return Type</h2>
+
+<p><code>Never</code> is used as a return type of function that unconditionally throws an error, traps, or otherwise do not terminate normally. Those kinds of functions do not actually return, they <strong>never</strong> return.</p>
+
+<p>Among the five terminating functions, only <code>preconditionFailure(_:file:line)</code> and <code>fatalError(_:file:line)</code> return <code>Never</code> because only these two functions unconditionally stop program executions and therefore never return.</p>
+
+<p>Here is a nice example of utilizing <code>Never</code> type in a command line app. (Although this example doesn’t use Swift Standard Library terminating functions but standard C <code>exit()</code> function instead).</p>
+
+<pre><code class="language-swift">func printUsagePromptAndExit() -&gt; Never {
+    print(&quot;Usage: command directory&quot;)
+    exit(1)
+}
+guard CommandLine.argc == 2 else {
+    printUsagePromptAndExit()
+}
+
+// ...
+</code></pre>
+
+<p>If <code>printUsagePromptAndExit()</code> returns <code>Void</code> instead of <code>Never</code>, you get a buildtime error with the message, &laquo;<em>&lsquo;guard&rsquo; body must not fall through, consider using a &lsquo;return&rsquo; or &lsquo;throw&rsquo; to exit the scope</em>&raquo;. By using <code>Never</code> you are saying in advance that you <strong>never</strong> exit the scope and therefore compiler won&rsquo;t give you a buildtime error. Otherwise, you should add <code>return</code> at the end of the guard code block, which doesn&rsquo;t look nice.</p>
+
+<h2 id="takeaways">Takeaways</h2>
+
+<ul>
+<li>It doesn&rsquo;t matter which terminating function to use if you are sure that all your runtime checks are relevant only for the <em>Debug</em> configuration.</li>
+<li>Use only <code>fatalError(_:file:line)</code> while applying <code>-Ounchecked</code> and at the same time allowing that the point of your program with <code>fatalError(_:file:line)</code> instruction may be reachable.</li>
+<li>Use <code>assert(_:_:file:line:)</code> and <code>assertionFailure(_:file:line:)</code> if you are worried that runtime checks may fail somehow in release. At least your app won&rsquo;t crash.</li>
+<li>Use <code>Never</code> to make your code look neat.</li>
+</ul>
+
+<h2 id="useful-links">Useful Links</h2>
+
+<ul>
+<li><a href="https://developer.apple.com/videos/play/wwdc2018/401">WWDC video &laquo;What&rsquo;s New in Swift&raquo;</a> telling about <code>SWIFT_OPTIMIZATION_LEVEL</code> build setting (from 11 minute).</li>
+<li><a href="https://swiftrocks.com/how-never-works-internally-in-swift.html">How Never Works Internally in Swift</a></li>
+<li><a href="https://nshipster.com/never/">NSHipster&rsquo;s article about nature of <code>Never</code></a></li>
+<li><a href="https://forums.swift.org/t/deprecating-ounchecked/6928">Swift Forums discussion</a> about suggestion to deprecate <code>-Ounchecked</code>.</li>
+</ul>
+
+</div>
+
+
+  <footer class="container">
+  <div class="container navigation no-print">
+  <h2>Navigation</h2>
+  
+  
+
+    
+    <a class="prev" href="https://witbit.io/blog/2018/12/17/%D1%8F%D0%BD%D0%B4%D0%B5%D0%BA%D1%81.%D1%81%D1%82%D0%B0%D0%BD%D1%86%D0%B8%D1%8F-%D0%BD%D0%B5%D0%BE%D1%87%D0%B5%D0%B2%D0%B8%D0%B4%D0%BD%D0%BE%D0%B5-%D0%B8-%D0%BF%D1%80%D0%B8%D0%BC%D0%B5%D1%87%D0%B0%D1%82%D0%B5%D0%BB%D1%8C%D0%BD%D0%BE%D0%B5/" title="Яндекс.Станция: неочевидное и примечательное">
+      Previous
+    </a>
+    
+
+    
+
+  
+
+
+</div>
+
+  <div class="container comments">
+  <h2>Comments</h2>
+  
+<div id="disqus_thread"></div>
+<script type="text/javascript">
+  (function() {
+    
+    
+    if (window.location.hostname == "localhost")
+      return;
+
+    var dsq = document.createElement('script'); dsq.async = true; dsq.type = 'text/javascript';
+    dsq.src = '//witbitsite.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+  })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+
+</div>
+
+</footer>
+
+</article>
+      <footer id="main-footer" class="container main_footer">
+  
+
+  <div class="container nav foot no-print">
+  
+
+  <a class="toplink" href="#">back to top</a>
+
+</div>
+
+  <div class="container credits">
+  
+<div class="container footline">
+  
+  Do stuff with ❤️
+
+
+</div>
+
+
+  
+<div class="container copyright">
+  
+  &copy; 2018 Dmitriy Alexeev
+
+
+</div>
+
+
+  <span>Site updated: <time datetime="2018-12-19T23:49:50&#43;03:00">19 Dec, 2018</time>
+</span>
+
+</div>
+
+</footer>
+
+    </main>
+    
+<script type="text/javascript">
+  (function() {
+    
+    
+    if (window.location.hostname == "localhost")
+      return;
+    var dsq = document.createElement('script'); dsq.async = true; dsq.type = 'text/javascript';
+    dsq.src = '//witbitsite.disqus.com/count.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+  })();
+</script>
+
+
+
+<script src="/js/highlight.pack.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+
+
+
+    
+  </body>
+</html>
+

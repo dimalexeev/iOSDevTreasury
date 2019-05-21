@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title></title>
+    <link>https://witbit.io/</link>
+    <description>Recent content on </description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-EN</language>
+    <managingEditor>dima@alexeev.biz (Dmitriy Alexeev)</managingEditor>
+    <webMaster>dima@alexeev.biz (Dmitriy Alexeev)</webMaster>
+    <copyright>(c) 2018 Dmitriy Alexeev</copyright>
+    <lastBuildDate>Wed, 19 Dec 2018 23:49:50 +0300</lastBuildDate>
+    
+	<atom:link href="https://witbit.io/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>The Processing of Unrecoverable Errors in Swift</title>
+      <link>https://witbit.io/blog/2018/12/19/the-processing-of-unrecoverable-errors-in-swift/</link>
+      <pubDate>Wed, 19 Dec 2018 23:49:50 +0300</pubDate>
+      <author>dima@alexeev.biz (Dmitriy Alexeev)</author>
+      <guid>https://witbit.io/blog/2018/12/19/the-processing-of-unrecoverable-errors-in-swift/</guid>
+      <description>Preface This article is an example of how we can do research into Swift Standard Library functions behavior building our knowledge not only on the Library documentation but also on its source code.
+Unrecoverable Errors All events which programmers call &amp;laquo;errors&amp;raquo; can be separated into two types.
+ Events caused by external factors such as a network connection failure. Events caused by a programmer&amp;rsquo;s mistake such as reaching a switch operator case which should be unreachable.</description>
+    </item>
+    
+    <item>
+      <title>Яндекс.Станция: неочевидное и примечательное</title>
+      <link>https://witbit.io/blog/2018/12/17/%D1%8F%D0%BD%D0%B4%D0%B5%D0%BA%D1%81.%D1%81%D1%82%D0%B0%D0%BD%D1%86%D0%B8%D1%8F-%D0%BD%D0%B5%D0%BE%D1%87%D0%B5%D0%B2%D0%B8%D0%B4%D0%BD%D0%BE%D0%B5-%D0%B8-%D0%BF%D1%80%D0%B8%D0%BC%D0%B5%D1%87%D0%B0%D1%82%D0%B5%D0%BB%D1%8C%D0%BD%D0%BE%D0%B5/</link>
+      <pubDate>Mon, 17 Dec 2018 22:44:32 +0300</pubDate>
+      <author>dima@alexeev.biz (Dmitriy Alexeev)</author>
+      <guid>https://witbit.io/blog/2018/12/17/%D1%8F%D0%BD%D0%B4%D0%B5%D0%BA%D1%81.%D1%81%D1%82%D0%B0%D0%BD%D1%86%D0%B8%D1%8F-%D0%BD%D0%B5%D0%BE%D1%87%D0%B5%D0%B2%D0%B8%D0%B4%D0%BD%D0%BE%D0%B5-%D0%B8-%D0%BF%D1%80%D0%B8%D0%BC%D0%B5%D1%87%D0%B0%D1%82%D0%B5%D0%BB%D1%8C%D0%BD%D0%BE%D0%B5/</guid>
+      <description>Конструкция Полезность Платформы Звук Кожух Микрофоны и прием команд Полезные трюки Будущее  Конструкция Яндекс.Станция — это голосовой ассистент, который также презентует информацию визуально на подключенном телевизоре или мониторе (через HDMI).
+Некоторые подсистемы из которых состоит Станция:
+ колонка (5 акустических элементов, в сумме 50 Вт); платформа Yandex.IO: главная плата + микрофонная матрица (7 микрофонов).  На платформе крутятся приложения: Алиса (голосовой помощник), приложения для стриминга музыки, кино, браузинга и стриминга видео-роликов в Интернете (например, с ютуба).</description>
+    </item>
+    
+    <item>
+      <title>About</title>
+      <link>https://witbit.io/about/</link>
+      <pubDate>Fri, 16 Nov 2018 16:46:54 +0300</pubDate>
+      <author>dima@alexeev.biz (Dmitriy Alexeev)</author>
+      <guid>https://witbit.io/about/</guid>
+      <description>This blog&amp;rsquo;s posts are about anything that is interesting for the author. First of all about software development, technology, management and engineering.
+GitHub issues and pull requests may be used for posting questions and corrections which are always welcome.
+Этот блог обо всем, что интересует автора. В первую очередь о разработке софта, технологиях, менеджменте и инженерии.
+Предложения или правки ошибок можно постить через issues или пул-реквесты.</description>
+    </item>
+    
+  </channel>
+</rss>
